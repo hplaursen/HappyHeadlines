@@ -1,0 +1,32 @@
+services:
+
+  draft-db:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: DraftDatabase
+    volumes:
+      - draft-db-data:/var/lib/postgresql
+    ports:
+      - "5732:5432"
+    networks:
+      - draft-internal
+
+  draft-service:
+    image: draft-service
+    ports:
+      - "8083:8080"
+    networks:
+      - happyheadlines
+      - draft-internal
+
+
+volumes:
+  draft-db-data:
+
+
+networks:
+  happyheadlines:
+    external: true
+  draft-internal:

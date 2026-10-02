@@ -1,0 +1,32 @@
+services:
+
+  profanity-db:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ProfanityDatabase
+    volumes:
+      - profanity-db-data:/var/lib/postgresql
+    ports:
+      - "5632:5432"
+    networks:
+      - profanity-internal
+
+  profanity-service:
+    image: profanity-service
+    ports:
+      - "8082:8080"
+    networks:
+      - happyheadlines
+      - profanity-internal
+
+
+volumes:
+  profanity-db-data:
+
+
+networks:
+  happyheadlines:
+    external: true
+  profanity-internal:

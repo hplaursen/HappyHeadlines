@@ -1,0 +1,147 @@
+services:
+
+  article-cache:
+    image: redis:8-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - article-internal
+
+  article-db-global:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ArticleDatabase
+    volumes:
+      - article-db-global-data:/var/lib/postgresql
+    ports:
+    - "5432:5432"
+    networks:
+      - article-internal
+
+  article-db-europe:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ArticleDatabase
+    volumes:
+      - article-db-europe-data:/var/lib/postgresql
+    ports:
+    - "5433:5432"
+    networks:
+      - article-internal
+
+  article-db-asia:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ArticleDatabase
+    volumes:
+      - article-db-asia-data:/var/lib/postgresql
+    ports:
+    - "5434:5432"
+    networks:
+      - article-internal
+
+  article-db-africa:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ArticleDatabase
+    volumes:
+      - article-db-africa-data:/var/lib/postgresql
+    ports:
+    - "5435:5432"
+    networks:
+      - article-internal
+
+  article-db-north-america:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ArticleDatabase
+    volumes:
+      - article-db-north-america-data:/var/lib/postgresql
+    ports:
+    - "5436:5432"
+    networks:
+      - article-internal
+
+  article-db-south-america:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ArticleDatabase
+    volumes:
+      - article-db-south-america-data:/var/lib/postgresql
+    ports:
+    - "5437:5432"
+    networks:
+      - article-internal
+
+  article-db-australia:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ArticleDatabase
+    volumes:
+      - article-db-australia-data:/var/lib/postgresql
+    ports:
+    - "5438:5432"
+    networks:
+      - article-internal
+
+  article-db-antarctica:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ArticleDatabase
+    volumes:
+      - article-db-antarctica-data:/var/lib/postgresql
+    ports:
+    - "5439:5432"
+    networks:
+      - article-internal
+
+  article-queue:
+    image: rabbitmq:4-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - article-internal
+
+  article-service:
+    image: article-service
+    ports:
+      - "8080:8080"
+    deploy:
+      replicas: 3
+    networks:
+      - happyheadlines
+      - article-internal
+
+
+volumes:
+  article-db-europe-data:
+  article-db-asia-data:
+  article-db-africa-data:
+  article-db-north-america-data:
+  article-db-south-america-data:
+  article-db-australia-data:
+  article-db-antarctica-data:
+  article-db-global-data:
+
+
+networks:
+  happyheadlines:
+    external: true
+  article-internal:

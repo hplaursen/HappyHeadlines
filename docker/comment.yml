@@ -1,0 +1,40 @@
+services:
+
+  comment-cache:
+    image: redis:8-alpine
+    ports:
+      - "6380:6379"
+    networks:
+      - comment-internal
+
+  comment-db:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: CommentDatabase
+    volumes:
+      - comment-db-data:/var/lib/postgresql
+    ports:
+      - "5532:5432"
+    networks:
+      - comment-internal
+      
+  comment-service:
+    image: comment-service
+    ports:
+      - "8081:8080"
+    networks:
+      - happyheadlines
+      - comment-internal
+
+
+
+volumes:
+  comment-db-data:
+
+
+networks:
+  happyheadlines:
+    external: true
+  comment-internal:

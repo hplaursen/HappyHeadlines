@@ -1,0 +1,15 @@
+@ArticleService_HostAddress = http://localhost:5182
+
+GET {{ArticleService_HostAddress}}/api/articles/1
+Accept: application/json
+
+###
+
+POST {{ArticleService_HostAddress}}/api/articles
+Content-Type: application/json
+
+{
+    "title": "My first article",
+    "content": "Hello from ArticleService!",
+    "publishedAt": "2026-09-09T10:00:00Z"
+}

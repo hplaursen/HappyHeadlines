@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="ArticleService/ArticleService.csproj" />
+  <Project Path="CommentService/CommentService.csproj" />
+  <Project Path="DraftService/DraftService.csproj" />
+  <Project Path="Messages/Messages.csproj" />
+  <Project Path="NewsletterService/NewsletterService.csproj" />
+  <Project Path="ProfanityService/ProfanityService.csproj" />
+  <Project Path="PublisherService/PublisherService.csproj" />
+  <Project Path="Resilience/Resilience.csproj" />
+</Solution>
