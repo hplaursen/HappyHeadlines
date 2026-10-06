@@ -10,7 +10,9 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
     <PackageReference Include="EasyNetQ" Version="8.1.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-    <ProjectReference Include="../Messages/Messages.csproj" />
   </ItemGroup>
-
+  <ItemGroup>   
+    <ProjectReference Include="..\Messages\Messages.csproj" />
+    <ProjectReference Include="..\Monitoring\Monitoring.csproj" />
+  </ItemGroup>
 </Project>

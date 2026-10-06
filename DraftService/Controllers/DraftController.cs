@@ -1,4 +1,4 @@
-using DraftService.Service;
+using DraftService.Services;
 using DraftService.Models;
 using Microsoft.AspNetCore.Mvc;
 

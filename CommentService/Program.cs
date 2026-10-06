@@ -5,8 +5,13 @@ using System.Text.Json.Serialization;
 using CommentService.Services;
 using Resilience;
 using StackExchange.Redis;
+using Monitoring;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
+
+TracingService.Configure();
+LoggingService.Configure(builder);
 
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
@@ -43,8 +48,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
 app.MapControllers();
 
 await PrepDB.MigrateAndSeedData(app.Services);
+app.MapMetrics();
 app.Run();

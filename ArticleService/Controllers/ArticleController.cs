@@ -21,7 +21,10 @@ public class ArticleController(ArticleRepository articlesRepository) : Controlle
     public async Task<IActionResult> CreateArticle(Article article, Continent continent)
     {
         Article? createdArticle = await articlesRepository.CreateArticleAsync(article, continent);
-        return CreatedAtAction(nameof(GetArticle), new { id = createdArticle.Id }, createdArticle);
+        return CreatedAtAction(
+            nameof(GetArticle), 
+            new { continent = continent.ToString(), id = createdArticle.Id}, 
+            createdArticle);
     }
 
     [HttpPut("{continent}")]

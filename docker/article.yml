@@ -129,6 +129,21 @@ services:
       - happyheadlines
       - article-internal
 
+  publisher-service:
+    image: publisher-service
+    ports:
+      - "8084:8080"
+    networks:
+      - happyheadlines
+      - article-internal
+
+  newsletter-service:
+    image: newsletter-service
+    ports:
+      - "8085:8080"
+    networks:
+      - article-internal
+
 
 volumes:
   article-db-europe-data:

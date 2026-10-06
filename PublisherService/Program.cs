@@ -1,7 +1,12 @@
 using EasyNetQ;
 using PublisherService.Services;
+using Monitoring;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+TracingService.Configure();
+LoggingService.Configure(builder);
 
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
@@ -18,7 +23,6 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
 app.MapControllers();
 
 app.Run();

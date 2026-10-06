@@ -7,8 +7,7 @@ namespace CommentService.Data;
 
 public static class PrepDB
 {
-public static async Task MigrateAndSeedData(
-    IServiceProvider services)
+public static async Task MigrateAndSeedData(IServiceProvider services)
 {
     using IServiceScope scope = services.CreateScope();
 
