@@ -35,25 +35,29 @@ public static class PrepDB
             {
                 Title = "New AI Model Released",
                 Content = "A new artificial intelligence model has been released with improved reasoning and coding capabilities.",
-                Continent = continent
+                Continent = continent,
+                PublishedAt = DateTime.UtcNow
             },
             new Article
             {
                 Title = "Global Markets Rise",
                 Content = "Stock markets around the world showed positive movements following new economic data.",
-                Continent = continent
+                Continent = continent,
+                PublishedAt = DateTime.UtcNow
             },
             new Article
             {
                 Title = "Major Climate Report Published",
                 Content = "A new climate report examines recent changes in global temperatures and weather patterns.",
-                Continent = continent
+                Continent = continent,
+                PublishedAt = DateTime.UtcNow
             },
             new Article
             {
                 Title = "New Smartphone Technology",
                 Content = "Technology companies are introducing new smartphone features focused on battery life and performance.",
-                Continent = continent
+                Continent = continent,
+                PublishedAt = DateTime.UtcNow
             },
             new Article
             {

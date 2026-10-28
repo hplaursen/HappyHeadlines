@@ -1,0 +1,22 @@
+name: Build and publish Docker images
+
+on:
+  push:
+    branches: 
+      - main
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - CommentService
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
