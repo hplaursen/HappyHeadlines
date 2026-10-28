@@ -24,6 +24,7 @@ jobs:
       - name: Build Docker image
         uses: docker/build-push-action@v7
         with:
-          context: ./CommentService
+          context: .
+          file: ./CommentService/Dockerfile
           push: false
           tags: comment-service:test
