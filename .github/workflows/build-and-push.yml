@@ -21,10 +21,17 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v7
 
-      - name: Build Docker image
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
         uses: docker/build-push-action@v7
         with:
           context: .
           file: ./CommentService/Dockerfile
-          push: false
-          tags: comment-service:test
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/happyheadlines/comment-service:${{ github.sha }}
