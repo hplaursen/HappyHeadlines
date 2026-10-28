@@ -14,8 +14,19 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        service:
-          - CommentService
+        include:
+          - service: ArticleService
+            image: happyheadlines-article-service
+          - service: CommentService
+            image: happyheadlines-comment-service
+          - service: DraftService
+            image: happyheadlines-draft-service
+          - service: ProfanityService
+            image: happyheadlines-profanity-service
+          - service: PublisherService
+            image: happyheadlines-publisher-service
+          - service: NewsletterService
+            image: happyheadlines-newsletter-service
 
     steps:
       - name: Check out repository
@@ -32,6 +43,6 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           context: .
-          file: ./CommentService/Dockerfile
+          file: ./${{ matrix.service }}/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/happyheadlines/comment-service:${{ github.sha }}
+          tags: ghcr.io/${{ github.repository_owner }}/${{ matrix.image }}:${{ github.sha }}
