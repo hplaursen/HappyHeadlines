@@ -18,6 +18,8 @@ stacks=(
   "docker/comment.yml comment"
   "docker/draft.yml draft"
   "docker/monitoring.yml monitoring"
+  "docker/subscriber.yml subscriber"
+  "docker/newsletter.yml newsletter"
   "docker/profanity.yml profanity"
 )
 

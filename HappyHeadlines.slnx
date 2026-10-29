@@ -5,6 +5,7 @@
   <Project Path="Messages/Messages.csproj" />
   <Project Path="Monitoring/Monitoring.csproj" />
   <Project Path="NewsletterService/NewsletterService.csproj" />
+  <Project Path="SubscriberService/SubscriberService.csproj" />
   <Project Path="ProfanityService/ProfanityService.csproj" />
   <Project Path="PublisherService/PublisherService.csproj" />
   <Project Path="Resilience/Resilience.csproj" />

@@ -1,0 +1,17 @@
+services:
+  newsletter-service:
+    image: newsletter-service
+    ports:
+      - "8085:8080"
+    networks:
+      - happyheadlines
+      - article-internal
+      - subscriber-internal
+
+networks:
+  happyheadlines:
+    external: true
+  article-internal:
+    external: true
+  subscriber-internal:
+    external: true

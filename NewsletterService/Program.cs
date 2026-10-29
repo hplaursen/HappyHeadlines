@@ -6,12 +6,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddHostedService<ArticleQueueSubscriber>();
+builder.Services.AddHostedService<SubscriberQueueSubscriber>();
 builder.Services.AddScoped<NewsletterManager>();
 builder.Services.AddEasyNetQ(builder.Configuration.GetConnectionString("articleQueueClient"));
 
 builder.Services.AddHttpClient<ArticleClient>(client =>
 {
-    client.BaseAddress = new Uri(builder.Configuration.GetConnectionString("articleClient")!); 
+    client.BaseAddress = new Uri(builder.Configuration.GetConnectionString("articleClient")!);
 });
 
 

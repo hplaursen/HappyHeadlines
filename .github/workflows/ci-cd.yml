@@ -1,0 +1,31 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Restore solution
+        run: dotnet restore HappyHeadlines.slnx
+      - name: Build all services
+        run: dotnet build HappyHeadlines.slnx --configuration Release --no-restore
+      - name: Validate service deployment manifests
+        run: |
+          for file in docker/*.yml; do docker compose -f "$file" config --quiet; done
+      - name: Build all service images
+        run: |
+          for service in Article Comment Draft Newsletter Profanity Publisher Subscriber; do
+            docker build -f "$service"Service/Dockerfile -t "happyheadlines/${service,,}:$GITHUB_SHA" .
+          done
